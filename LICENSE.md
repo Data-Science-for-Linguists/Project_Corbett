@@ -8,6 +8,6 @@ https://www.reddit.com/help/useragreement/
 
 As this project is for educational purposes only, data are available under the doctrine of fair use.
 
-If any data from this project are used by another individual, they must observe the rules of fair use.
+If any data from this project are used by another individual, they must abide by the rules of fair use and credit the data as coming from Reddit.
 
 Any code in this repository is free to use with credit to the creator.

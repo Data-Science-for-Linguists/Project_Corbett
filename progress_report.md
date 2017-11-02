@@ -1,9 +1,16 @@
 ### Progress Report Reddit Comment Classification
 
+11/02/2017
+	- I ran the code on all of the json files so I now I have the 8 csv files each containing 50,000 posts
+		- each post has a body of atleast 150 characters
+	- I updated LICENSE.md and LICENSE_notes.md to the best of my knowledge, I would like to check with Lauren Collister 
+			next week that they are acceptable
+	- I was able to push the csv files to github
+
 10/31/2017
 	- modified the extraction code to transform the json entries into a dataframe and save them as a csv file
 	- examined the length of each file to see which subreddits have enough posts for me to work with
-	- chose 9 subreddits to work with, number of total posts in June, August and September of this year
+	- chose 8 subreddits to work with, number of total posts in June, August and September of this year
 		- "Conservative" 	169,622 posts
 		- "Libertarian" 	280,908 posts
 		- "neoliberal"		557,280 posts
@@ -12,7 +19,7 @@
 		- "Android"			434,356 posts
 		- "boardgames"		184,762 posts
 		- "food"			205,690 posts
-	- Next, I will extract 100,000 random posts from each subreddit of atleast a certain length.
+	- Next, I will extract 50,000 posts from each subreddit of atleast a certain length.
 
 10/12/2017
 	- downloaded one year worth of reddit data to begin with
