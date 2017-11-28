@@ -1,5 +1,15 @@
 ### Progress Report Reddit Comment Classification
 
+11/28/2017
+	- All data is collected and stored as json files, I had to abondon trying to save the data as csv files because I had many problems with formats
+		- each subreddit has its own file with 50,000 entries, each with a body that is atleast 150 characters
+	- I've been having some trouble handling large numbers of posts
+		- I ran some experiments creating naive bayes models using larger and larger amounts of data and tracked the accuracy
+		- I found that the accuracy plateaus around 2500 post from each subreddit
+			thats 20,000 posts total
+		- Adding more posts either offers marginal improvements or decreases accuracy
+	- Moving forward, I am going to attempt each model using chunks of this size
+
 11/02/2017
 	- I ran the code on all of the json files so I now I have the 8 csv files each containing 50,000 posts
 		- each post has a body of atleast 150 characters
