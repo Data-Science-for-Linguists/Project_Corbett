@@ -34,8 +34,8 @@ fullset=punctset.union(stopset)
 
 
 ```python
-d = {'body':[], 
-     'score':[], 
+d = {'body':[],
+     'score':[],
      'subreddit':[],
      'percentile':[]
     }
@@ -100,7 +100,7 @@ def reddit_df_create(sample_size, start_line, z):
             y=y+1
             if(y>=sample+start):
                 break
-                
+
     with open('../../json_files/Conservative.txt', 'r') as infile:
         y=0
         for line in infile:
@@ -114,7 +114,7 @@ def reddit_df_create(sample_size, start_line, z):
             y=y+1
             if(y>=sample+start):
                 break
-                
+
     with open('../../json_files/hockey.txt', 'r') as infile:
         y=0
         for line in infile:
@@ -128,7 +128,7 @@ def reddit_df_create(sample_size, start_line, z):
             y=y+1
             if(y>=sample+start):
                 break
-                
+
     with open('../../json_files/Libertarian.txt', 'r') as infile:
         y=0
         for line in infile:
@@ -142,7 +142,7 @@ def reddit_df_create(sample_size, start_line, z):
             y=y+1
             if(y>=sample+start):
                 break
-                
+
     with open('../../json_files/neoliberal.txt', 'r') as infile:
         y=0
         for line in infile:
@@ -156,7 +156,7 @@ def reddit_df_create(sample_size, start_line, z):
             y=y+1
             if(y>=sample+start):
                 break
-                
+
     with open('../../json_files/politics.txt', 'r') as infile:
         y=0
         for line in infile:
@@ -165,12 +165,12 @@ def reddit_df_create(sample_size, start_line, z):
                 reddit_df.loc[x, 'body'] = line_in['body']
                 reddit_df.loc[x, 'score'] = line_in['score']
                 reddit_df.loc[x, 'subreddit'] = 'politics'
-                num_posts=num_posts+1 
+                num_posts=num_posts+1
                 x=x+1
             y=y+1
             if(y>=sample+start):
                 break
-                
+
     with open('../../json_files/worldnews.txt', 'r') as infile:
         y=0
         for line in infile:
@@ -302,7 +302,7 @@ while(iterator<(tot_num_posts/num_retreive)):
     #start=start+num_retreive
     reddit_df_create(num_retreive, start, z)
     y = reddit_df['subreddit']
-    
+
     reddit_counts = reddit_vec.fit_transform(reddit_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -310,16 +310,16 @@ while(iterator<(tot_num_posts/num_retreive)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
 ```
 
     1
-    
+
 
 
     ---------------------------------------------------------------------------
@@ -331,8 +331,8 @@ while(iterator<(tot_num_posts/num_retreive)):
          10     #start=start+num_retreive
     ---> 11     reddit_df_create(num_retreive, start, z)
          12     y = reddit_df['subreddit']
-         13 
-    
+         13
+
 
     <ipython-input-86-79808f686523> in reddit_df_create(sample_size, start_line, z)
           9             if(num_posts<sample and y>=start):
@@ -340,15 +340,15 @@ while(iterator<(tot_num_posts/num_retreive)):
     ---> 11                 reddit_df.loc[x, 'body'] = line_in['body']
          12                 reddit_df.loc[x, 'score'] = line_in['score']
          13                 reddit_df.loc[x, 'subreddit'] = 'Android'
-    
+
 
     ~\Anaconda3\lib\site-packages\pandas\core\indexing.py in __setitem__(self, key, value)
         177             key = com._apply_if_callable(key, self.obj)
         178         indexer = self._get_setitem_indexer(key)
     --> 179         self._setitem_with_indexer(indexer, value)
-        180 
+        180
         181     def _has_valid_type(self, k, axis):
-    
+
 
     ~\Anaconda3\lib\site-packages\pandas\core\indexing.py in _setitem_with_indexer(self, indexer, value)
         349                     index = self.obj._get_axis(i)
@@ -356,65 +356,65 @@ while(iterator<(tot_num_posts/num_retreive)):
     --> 351                     self.obj._data = self.obj.reindex_axis(labels, i)._data
         352                     self.obj._maybe_update_cacher(clear=True)
         353                     self.obj.is_copy = None
-    
+
 
     ~\Anaconda3\lib\site-packages\pandas\core\frame.py in reindex_axis(self, labels, axis, method, level, copy, limit, fill_value)
        2837                      self).reindex_axis(labels=labels, axis=axis,
        2838                                         method=method, level=level, copy=copy,
     -> 2839                                         limit=limit, fill_value=fill_value)
-       2840 
+       2840
        2841     @Appender(_shared_docs['rename'] % _shared_doc_kwargs)
-    
+
 
     ~\Anaconda3\lib\site-packages\pandas\core\generic.py in reindex_axis(self, labels, axis, method, level, copy, limit, fill_value)
        2491                                                  limit=limit)
        2492         return self._reindex_with_indexers({axis: [new_index, indexer]},
     -> 2493                                            fill_value=fill_value, copy=copy)
-       2494 
+       2494
        2495     def _reindex_with_indexers(self, reindexers, fill_value=np.nan, copy=False,
-    
+
 
     ~\Anaconda3\lib\site-packages\pandas\core\generic.py in _reindex_with_indexers(self, reindexers, fill_value, copy, allow_dups)
        2514                                                 fill_value=fill_value,
        2515                                                 allow_dups=allow_dups,
     -> 2516                                                 copy=copy)
-       2517 
+       2517
        2518         if copy and new_data is self._data:
-    
+
 
     ~\Anaconda3\lib\site-packages\pandas\core\internals.py in reindex_indexer(self, new_axis, indexer, axis, fill_value, allow_dups, copy)
        3895             new_blocks = [blk.take_nd(indexer, axis=axis, fill_tuple=(
        3896                 fill_value if fill_value is not None else blk.fill_value,))
     -> 3897                 for blk in self.blocks]
-       3898 
+       3898
        3899         new_axes = list(self.axes)
-    
+
 
     ~\Anaconda3\lib\site-packages\pandas\core\internals.py in <listcomp>(.0)
        3895             new_blocks = [blk.take_nd(indexer, axis=axis, fill_tuple=(
        3896                 fill_value if fill_value is not None else blk.fill_value,))
     -> 3897                 for blk in self.blocks]
-       3898 
+       3898
        3899         new_axes = list(self.axes)
-    
+
 
     ~\Anaconda3\lib\site-packages\pandas\core\internals.py in take_nd(self, indexer, axis, new_mgr_locs, fill_tuple)
        1044             fill_value = fill_tuple[0]
        1045             new_values = algos.take_nd(values, indexer, axis=axis,
     -> 1046                                        allow_fill=True, fill_value=fill_value)
-       1047 
+       1047
        1048         if new_mgr_locs is None:
-    
+
 
     ~\Anaconda3\lib\site-packages\pandas\core\algorithms.py in take_nd(arr, indexer, axis, out, fill_value, mask_info, allow_fill)
        1460             out = np.empty(out_shape, dtype=dtype, order='F')
        1461         else:
     -> 1462             out = np.empty(out_shape, dtype=dtype)
-       1463 
+       1463
        1464     func = _get_take_nd_function(arr.ndim, arr.dtype, out.dtype, axis=axis,
-    
 
-    KeyboardInterrupt: 
+
+    KeyboardInterrupt:
 
 
 # top 100 tokens for each subreddit
@@ -441,7 +441,7 @@ The heatmap for the previous model looks pretty good.  The control subreddits (h
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['Android','Conservative','Libertarian','boardgames','hockey','neoliberal','politics','worldnews'], 
+            xticklabels=['Android','Conservative','Libertarian','boardgames','hockey','neoliberal','politics','worldnews'],
             yticklabels=['Android','Conservative','Libertarian','boardgames','hockey','neoliberal','politics','worldnews'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -465,7 +465,7 @@ while(iterator<1):
     start=start+num_retreive
 
     y = reddit_df['subreddit']
-    
+
     reddit_counts = reddit_vec.fit_transform(reddit_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -473,9 +473,9 @@ while(iterator<1):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -509,7 +509,7 @@ heatmap looks similar to the other model.  The confusion is still happening in t
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['Android','Conservative','Libertarian','boardgames','hockey','neoliberal','politics','worldnews'], 
+            xticklabels=['Android','Conservative','Libertarian','boardgames','hockey','neoliberal','politics','worldnews'],
             yticklabels=['Android','Conservative','Libertarian','boardgames','hockey','neoliberal','politics','worldnews'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -517,7 +517,7 @@ plt.show()
 ```
 
 
-![png](output_28_0.png)
+![png](images/output_28_0.png)
 
 
 # explore the posts scores
@@ -534,7 +534,7 @@ print(reddit_df['score'].min())
     8.9692925
     17193.0
     -274.0
-    
+
 
 
 ```python
@@ -1570,7 +1570,7 @@ print(Android_df)
     49997  I think the fact that animojis is something Ap...         3.0  5445.0   
     49998  Except it's not, because what should happen at...         3.0  6781.0   
     49999  Pretty much what the leaks said it would be. T...         3.0  9142.0   
-    
+
           subreddit  
     0       Android  
     1       Android  
@@ -1633,9 +1633,9 @@ print(Android_df)
     49997   Android  
     49998   Android  
     49999   Android  
-    
+
     [50000 rows x 4 columns]
-    
+
 
 # create model
 
@@ -1653,9 +1653,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = Android_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(Android_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -1663,9 +1663,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -1673,7 +1673,7 @@ while(iterator<(1)):
 
     1
     0.4131
-    
+
 
 # accuracy
 
@@ -1684,7 +1684,7 @@ The accuracy for these models are much worse then when we were predicting subred
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -1721,9 +1721,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = Android_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(Android_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -1731,9 +1731,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -1741,14 +1741,14 @@ while(iterator<(1)):
 
     1
     0.4217
-    
+
 
 
 ```python
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -1799,9 +1799,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = boardgames_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(boardgames_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -1809,9 +1809,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -1819,14 +1819,14 @@ while(iterator<(1)):
 
     1
     0.4073
-    
+
 
 
 ```python
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -1855,9 +1855,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = boardgames_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(boardgames_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -1865,9 +1865,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -1875,14 +1875,14 @@ while(iterator<(1)):
 
     1
     0.4094
-    
+
 
 
 ```python
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -1929,9 +1929,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = Conservative_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(Conservative_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -1939,9 +1939,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -1949,14 +1949,14 @@ while(iterator<(1)):
 
     1
     0.4044
-    
+
 
 
 ```python
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -1985,9 +1985,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = Conservative_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(Conservative_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -1995,9 +1995,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -2005,14 +2005,14 @@ while(iterator<(1)):
 
     1
     0.3992
-    
+
 
 
 ```python
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -2059,9 +2059,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = hockey_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(hockey_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -2069,9 +2069,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -2079,14 +2079,14 @@ while(iterator<(1)):
 
     1
     0.4095
-    
+
 
 
 ```python
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -2115,9 +2115,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = hockey_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(hockey_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -2125,9 +2125,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -2135,14 +2135,14 @@ while(iterator<(1)):
 
     1
     0.4055
-    
+
 
 
 ```python
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -2189,9 +2189,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = Libertarian_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(Libertarian_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -2199,9 +2199,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -2209,14 +2209,14 @@ while(iterator<(1)):
 
     1
     0.4399
-    
+
 
 
 ```python
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -2245,9 +2245,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = Libertarian_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(Libertarian_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -2255,9 +2255,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -2265,14 +2265,14 @@ while(iterator<(1)):
 
     1
     0.4566
-    
+
 
 
 ```python
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -2319,9 +2319,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = neoliberal_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(neoliberal_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -2329,9 +2329,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -2339,14 +2339,14 @@ while(iterator<(1)):
 
     1
     0.4596
-    
+
 
 
 ```python
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -2375,9 +2375,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = neoliberal_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(neoliberal_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -2385,9 +2385,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -2395,14 +2395,14 @@ while(iterator<(1)):
 
     1
     0.4461
-    
+
 
 
 ```python
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -2449,9 +2449,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = politics_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(politics_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -2459,9 +2459,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -2469,14 +2469,14 @@ while(iterator<(1)):
 
     1
     0.4153
-    
+
 
 
 ```python
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -2505,9 +2505,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = politics_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(politics_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -2515,9 +2515,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -2525,14 +2525,14 @@ while(iterator<(1)):
 
     1
     0.4294
-    
+
 
 
 ```python
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -2579,9 +2579,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = worldnews_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(worldnews_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -2589,9 +2589,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -2599,14 +2599,14 @@ while(iterator<(1)):
 
     1
     0.4022
-    
+
 
 
 ```python
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
@@ -2635,9 +2635,9 @@ while(iterator<(1)):
     iterator=iterator+1
     print(iterator)
     start=start+num_retreive
-    
+
     y = worldnews_df['percentile']
-    
+
     reddit_counts = reddit_vec.fit_transform(worldnews_df['body'])
     tfidf_transformer = TfidfTransformer()
     reddit_tfidf = tfidf_transformer.fit_transform(reddit_counts)
@@ -2645,9 +2645,9 @@ while(iterator<(1)):
     X = reddit_tfidf
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-    
+
     classifier = MultinomialNB().partial_fit(X_train, y_train,classes=np.unique(y_train))
-    
+
     y_pred = classifier.predict(X_test)
 
     print(accuracy_score(y_test, y_pred))
@@ -2655,14 +2655,14 @@ while(iterator<(1)):
 
     1
     0.3884
-    
+
 
 
 ```python
 cm = confusion_matrix(y_test, y_pred)
 
 sns.heatmap(cm.T, square=True, annot=True, fmt='d', cbar=False,
-            xticklabels=['3','2','1'], 
+            xticklabels=['3','2','1'],
             yticklabels=['3','2','1'])
 plt.xlabel('true label')
 plt.ylabel('predicted label')
