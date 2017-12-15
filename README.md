@@ -26,7 +26,14 @@ scores.  I saved all of the dataframes as csv files so I can look at them later.
 Finally, I compared the lists to see which tokens are in each list.
 
 Directory:
+Corbett_part_1_data_extraction.ipynb - used to extract posts from main data files
+Corbett_part_2_data_exploration.ipynb - used to extract 50,000 posts from each subreddit
+Analysis.ipynb - Main Analysis
+
+csv_files - csv files from Analysis
+
+images - images for markdown files
 
 
-Link to Visitors Log: Shared-Repo/todo10_visitors_log/visitors_log_rob.md
+Link to Visitors Log: https://github.com/Data-Science-for-Linguists/Shared-Repo/blob/master/todo10_visitors_log/visitors_log_rob.md
 Link to Reddit Data:  http://files.pushshift.io/reddit/comments/
