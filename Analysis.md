@@ -1855,7 +1855,7 @@ plt.show()
 ```
 
 
-![png](images\output_29_0.png)
+![png](images/output_29_0.png)
 
 
 # explore the posts scores
@@ -3030,7 +3030,7 @@ plt.show()
 ```
 
 
-![png](images\output_43_0.png)
+![png](images/output_43_0.png)
 
 
 # save csv
@@ -3094,7 +3094,7 @@ plt.show()
 ```
 
 
-![png](images\output_48_0.png)
+![png](images/output_48_0.png)
 
 
 
@@ -3172,7 +3172,7 @@ plt.show()
 ```
 
 
-![png](images\output_53_0.png)
+![png](images/output_53_0.png)
 
 
 
@@ -3228,7 +3228,7 @@ plt.show()
 ```
 
 
-![png](images\output_56_0.png)
+![png](images/output_56_0.png)
 
 
 
@@ -3302,7 +3302,7 @@ plt.show()
 ```
 
 
-![png](images\output_60_0.png)
+![png](images/output_60_0.png)
 
 
 
@@ -3358,7 +3358,7 @@ plt.show()
 ```
 
 
-![png](images\output_63_0.png)
+![png](images/output_63_0.png)
 
 
 
@@ -3432,7 +3432,7 @@ plt.show()
 ```
 
 
-![png](images\output_67_0.png)
+![png](images/output_67_0.png)
 
 
 
@@ -3488,7 +3488,7 @@ plt.show()
 ```
 
 
-![png](images\output_70_0.png)
+![png](images/output_70_0.png)
 
 
 
@@ -3562,7 +3562,7 @@ plt.show()
 ```
 
 
-![png](images\output_74_0.png)
+![png](images/output_74_0.png)
 
 
 
@@ -3618,7 +3618,7 @@ plt.show()
 ```
 
 
-![png](images\output_77_0.png)
+![png](images/output_77_0.png)
 
 
 
@@ -3692,7 +3692,7 @@ plt.show()
 ```
 
 
-![png](images\output_81_0.png)
+![png](images/output_81_0.png)
 
 
 
@@ -3748,7 +3748,7 @@ plt.show()
 ```
 
 
-![png](images\output_84_0.png)
+![png](images/output_84_0.png)
 
 
 
@@ -3822,7 +3822,7 @@ plt.show()
 ```
 
 
-![png](images\output_88_0.png)
+![png](images/output_88_0.png)
 
 
 
@@ -3878,7 +3878,7 @@ plt.show()
 ```
 
 
-![png](images\output_91_0.png)
+![png](images/output_91_0.png)
 
 
 
@@ -3952,7 +3952,7 @@ plt.show()
 ```
 
 
-![png](images\output_95_0.png)
+![png](images/output_95_0.png)
 
 
 
