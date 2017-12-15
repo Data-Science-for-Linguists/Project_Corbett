@@ -1069,7 +1069,7 @@ plt.show()
 ```
 
 
-![png](images\output_21_0.png)
+![png](images/output_21_0.png)
 
 
 # repeat above model with bigrams
